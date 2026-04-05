@@ -1,5 +1,5 @@
 const Teclas = document.querySelectorAll(".tecla")
-
+let nIntento = 1
 let intentoUsuario = []
 
 Teclas.forEach(boton => {
@@ -8,13 +8,14 @@ Teclas.forEach(boton => {
         if (intentoUsuario.length < 8) {
             intentoUsuario.push(Number(valor))
             console.log("Intento actual:", intentoUsuario);
+            actualizarInterfaz(valor)
         }
-        actualizarInterfaz()
     })
 })
 
-function actualizarInterfaz(){
-
+function actualizarInterfaz(valor){
+    let valorCelda = document.getElementById(`celda${nIntento}-${intentoUsuario.length}`)
+    valorCelda.textContent = valor
 }
 
 function generarFecha() {

@@ -35,9 +35,26 @@ html {
     justify-content: space-around;
     align-items: center;
 }
+.main_tablero {
+    display: flex;
+    flex-direction: column;
+}
+.main_tablero-fila{
+    display: flex;
+    justify-content: space-between;
+    width: 450px;
+}
+.main_tablero-fila > .celda {
+    width: 40px;
+    height: 40px;
+    border: 2px solid var(--color-grey);
+    border-radius: 20px;
+    text-align: center;
+    font-size: large;
+}
 .main_teclado {
-    width: 400px;
-    height: 300px;
+    width: 280px;
+    height: 180px;
     display: flex;
     flex-wrap: wrap;
 }
@@ -49,8 +66,8 @@ html {
     justify-content: center;
 }
 .main_teclado > .teclaNumero {
-    width: 75px;
-    height: 75px;
+    width: 50px;
+    height: 50px;
     background-color: var(--color-grey);
 }
 .main_teclado > .tecla p {
@@ -63,8 +80,8 @@ html {
     background-color: var(--color-blue);
 }
 .tecla-accion {
-    width: 190px;
-    height: 75px;
+    width: 120px;
+    height: 50px;
     margin: auto;
     text-align: center;
     border-radius: 10px;
