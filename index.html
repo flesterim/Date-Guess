@@ -3,27 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
     <title>Document</title>
 </head>
 <body>
-    <header>
-        <h1>FECHLE</h1>
+    <header class="header">
+        <div class="header_help">?</div>
+        <div class="header_logo"><div id="fechale-icon"></div><h1>Fechale</h1></div>
+        <div class="header_restart">Restart</div>
     </header>
 
-    <main id="tablero">
-        <div class="fila">
+    <main class="main">
+        <div id="texto-evento"></div>
+        <div class="main_tablero">
+            <div id="fila1" class="fila">
+                <div id="celda1-1" class="celda"></div>
+                <div id="celda1-2" class="celda"></div>
+                <div>
+                    <p>/</p>
+                </div>
+                <div id="celda1-3" class="celda"></div>
+                <div id="celda1-4" class="celda"></div>
+                <div>
+                    <p>/</p>
+                </div>
+                <div id="celda1-5" class="celda"></div>
+                <div id="celda1-6" class="celda"></div>
+                <div id="celda1-7" class="celda"></div>
+                <div id="celda1-8" class="celda"></div>
+            </div>
+            <div id="fila2" class="fila"></div>
+            <div id="fila3" class="fila"></div>
+            <div id="fila4" class="fila"></div>
+            <div id="fila5" class="fila"></div>
+            <div id="fila6" class="fila"></div>
             <div class="celda"></div>
             <div class="celda"></div>
         </div>
-    </main>
-
-    <section id="teclado">
-        <div class="tecla">1</div>
-        <div class="tecla">2</div>
-        <div class="tecla borrar">←</div>
-        <div class="tecla enviar">ENTER</div>
+        <p class="formato">Formato: DD / MM / AAAA</p>
+        <section id="teclado" class="main_teclado">
+            <div class="tecla teclaNumero"><p>1</p></div>
+            <div class="tecla teclaNumero"><p>2</p></div>
+            <div class="tecla teclaNumero"><p>3</p></div>
+            <div class="tecla teclaNumero"><p>4</p></div>
+            <div class="tecla teclaNumero"><p>5</p></div>
+            <div class="tecla teclaNumero"><p>6</p></div>
+            <div class="tecla teclaNumero"><p>7</p></div>
+            <div class="tecla teclaNumero"><p>8</p></div>
+            <div class="tecla teclaNumero"><p>9</p></div>
+            <div class="tecla teclaNumero"><p>0</p></div>
+            <div class="tecla tecla-accion tecla-borrar"><p>←</p></div>
+            <div class="tecla tecla-accion tecla-enviar"><p>ENTER</p></div>
     </section>
-
+    </main>
     <script src="script.js"></script>
 </body>
 </html>

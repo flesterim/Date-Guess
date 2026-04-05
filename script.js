@@ -1,3 +1,22 @@
+const Teclas = document.querySelectorAll(".tecla")
+
+let intentoUsuario = []
+
+Teclas.forEach(boton => {
+    boton.addEventListener("click", () => {
+        const valor = boton.innerText;
+        if (intentoUsuario.length < 8) {
+            intentoUsuario.push(Number(valor))
+            console.log("Intento actual:", intentoUsuario);
+        }
+        actualizarInterfaz()
+    })
+})
+
+function actualizarInterfaz(){
+
+}
+
 function generarFecha() {
     const inicio = new Date(1024, 0, 1)
     const fin = new Date(2026, 2, 30)
