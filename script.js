@@ -1,27 +1,3 @@
-const Teclas = document.querySelectorAll(".tecla")
-let nIntento = 1
-let intentoUsuario = []
-
-Teclas.forEach(boton => {
-    boton.addEventListener("click", () => {
-        const valor = boton.innerText;
-        if (intentoUsuario.length < 8) {
-            intentoUsuario.push(Number(valor))
-            console.log("Intento actual:", intentoUsuario);
-            actualizarInterfaz(valor)
-        }
-    })
-})
-
-function actualizarInterfaz(valor){
-    let idBusqueda = `celda${nIntento}-${intentoUsuario.length}`
-    let valorCelda = document.getElementById(idBusqueda)
-
-    if (valorCelda) {
-        valorCelda.textContent = valor
-    }
-}
-
 function generarFecha() {
     const inicio = new Date(1024, 0, 1)
     const fin = new Date(2026, 2, 30)
@@ -37,31 +13,27 @@ function generarFecha() {
     return stringFecha.split('').map(Number);
 }
 
-const fechaEstablecida = generarFecha()
+const fechaEstablecida = generarFecha() // Generar fecha para el juego
 console.log(fechaEstablecida)
-let coloresIntento = []
 
-function compararFecha(correcta, intento) {
-    for (let i = 0; i < intento.length; i++) {
-        if (intento[i] == correcta[i]) {
-            coloresIntento[i] = "v" // se debe pintar de verde
-            let celdita = document.getElementById(`celda${nIntento}-${intento[i] + 1}`)
-            celdita.classList.add("verde")
-        } else {
-            coloresIntento[i] = "g" // se debe pintar de gris
-            let celdita = document.getElementById(`celda${nIntento}-${intento[i] + 1}`)
-            celdita.classList.add("gris")
-            for (let j = 0; j < correcta.length; j++) {
-                if (intento[i] == correcta[j]) {
-                    coloresIntento[i] = "a" // se debe pintar de amarillo
-                    let celdita = document.getElementById(`celda${nIntento}-${intento[i] + 1}`)
-                    celdita.classList.add("amarillo")
-                    break;
-                }
-            }
+const Teclas = document.querySelectorAll(".teclaNumero") // Escuchador de teclas del tablero
+Teclas.forEach(boton => {
+    boton.addEventListener("click", () => {
+        if (intentoUsuario.length < 8) {
+            const valor = boton.innerText;
+            intentoUsuario.push(Number(valor))
+            console.log("Intento actual:", intentoUsuario);
+            actualizarInterfaz(valor)
         }
-    }
-}
+    })
+})
+
+let botonBorrarId = document.getElementById("tecla-borrar")
+botonBorrarId.addEventListener("click", ()=> {
+    actualizarInterfaz("")
+    let valorBorrado =intentoUsuario.pop()
+    console.log(valorBorrado)
+})
 
 let botonEnviarId = document.getElementById("tecla-enviar")
 botonEnviarId.addEventListener("click", ()=> {
@@ -78,10 +50,53 @@ botonEnviarId.addEventListener("click", ()=> {
                 celdita.classList.add("amarillo")
             }
         });
+
+        if (coloresCalculados.every(c => c === "v")) {
+            alert("¡Felicidades! Adivinaste la fecha.");
+        } else {
+            nIntento++
+            intentoUsuario = []
+        }
+    } else {
+        alert("Faltan números por completar");
     }
 })
 
-for (let a = 0; a < coloresIntento.length; a++) {
-    console.log(coloresIntento[a])
+let nIntento = 1
+let intentoUsuario = []
+
+
+
+function actualizarInterfaz(valor){
+    let idBusqueda = `celda${nIntento}-${intentoUsuario.length}`
+    let valorCelda = document.getElementById(idBusqueda)
+
+    if (valorCelda) {
+        valorCelda.textContent = valor
+    }
 }
 
+function compararFecha(correcta, intento) {
+    let coloresIntento = []
+    let copiaCorrecta = [...correcta]
+
+    for (let i = 0; i < intento.length; i++) {
+        if (intento[i] == correcta[i]) {
+            coloresIntento[i] = "v"
+            copiaCorrecta[i] = null;
+        }
+    }
+
+    for (let i = 0; i < intento.length; i++) {
+        if(coloresIntento[i] == "v") continue
+
+        let indexAmarillo = copiaCorrecta.indexOf(intento[i]);
+        if (indexAmarillo !== -1) {
+            coloresIntento[i] = "a";
+            copiaCorrecta[indexAmarillo] = null;
+        } else {
+            coloresIntento[i] = "g";
+        }
+    }
+    return coloresIntento
+}
